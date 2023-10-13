@@ -1,9 +1,10 @@
 #!/bin/bash
 
+rm -f staging/live/*
 
 mkdir -p $HOME/LIVE_BOOT/{staging/{EFI/BOOT,boot/grub/x86_64-efi,isolinux,live},tmp}
 
-sudo mksquashfs \
+mksquashfs \
     $HOME/LIVE_BOOT/chroot \
     $HOME/LIVE_BOOT/staging/live/filesystem.squashfs \
     -e boot
@@ -123,7 +124,7 @@ grub-mkstandalone -O x86_64-efi \
 xorriso \
     -as mkisofs \
     -iso-level 3 \
-    -o "${HOME}/LIVE_BOOT/debian-custom.iso" \
+    -o "${HOME}/LIVE_BOOT/rts-live.iso" \
     -full-iso9660-filenames \
     -volid "DEBLIVE" \
     --mbr-force-bootable -partition_offset 16 \

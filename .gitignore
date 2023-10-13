@@ -2,3 +2,4 @@
 chroot/*
 staging/
 rts-live.iso
+tmp/

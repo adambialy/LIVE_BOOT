@@ -21,4 +21,6 @@ chroot chroot/ echo "rts-live" > /etc/hostname
 cp -r configs/etc/ssh/* chroot/etc/ssh/
 cp -r configs/etc/systemd/system/* chroot/etc/systemd/system/
 
+cp -r configs/root/* chroot/root/
+
 

@@ -19,7 +19,7 @@ cp $HOME/LIVE_BOOT/chroot/boot/initrd.img-* \
 cat <<'EOF' >$HOME/LIVE_BOOT/staging/isolinux/isolinux.cfg
 UI vesamenu.c32
 
-MENU TITLE Boot Menu
+MENU TITLE Rack Test System Boot Menu
 DEFAULT linux
 TIMEOUT 50
 MENU RESOLUTION 640 480
@@ -34,16 +34,16 @@ MENU COLOR msg07        37;40   #90ffffff #a0000000 std
 MENU COLOR tabmsg       31;40   #30ffffff #00000000 std
 
 LABEL linux
-  MENU LABEL Debian Live [BIOS/ISOLINUX]
+  MENU LABEL Live Boot RTS [BIOS/ISOLINUX]
   MENU DEFAULT
   KERNEL /live/vmlinuz
-  APPEND initrd=/live/initrd boot=live
+  APPEND initrd=/live/initrd boot=live toram
 
 LABEL linux
-  MENU LABEL Debian Live [BIOS/ISOLINUX] (nomodeset)
+  MENU LABEL Live Boot RTS [BIOS/ISOLINUX] (vga)
   MENU DEFAULT
   KERNEL /live/vmlinuz
-  APPEND initrd=/live/initrd boot=live nomodeset
+  APPEND initrd=/live/initrd boot=live nomodeset toram
 EOF
 
 

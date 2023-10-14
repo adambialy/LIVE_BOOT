@@ -47,7 +47,12 @@ git clone https://github.com/adambialy/RTS_ansible /root/RTS_ansible
 echo "rts-live" > /etc/hostname
 
 # scramble password
-export PwgenPw=`pwgen 10 1` && echo -e "${PwgenPw}\n${PwgenPw}" | passwd
+export PwgenPw=`pwgen 10 1` && \
+echo "root account password set to ${PwgenPw}" && \
+echo "root password: ${PwgenPw}" > /root/root_pw.txt && \
+chmod 600 /root/root_pw.txt && \
+echo -e "${PwgenPw}\n${PwgenPw}" | passwd
+
 EOF
 
 chmod 700 $HOME/LIVE_BOOT/chroot/root/configure.sh

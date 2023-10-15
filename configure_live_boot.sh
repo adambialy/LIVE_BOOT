@@ -37,6 +37,8 @@ apt-get install debconf-utils -y
 DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends linux-image-amd64 live-boot systemd-sysv -y
 DEBIAN_FRONTEND=noninteractive apt-get install ${CHROOTAPTI} --no-install-recommends network-manager net-tools wireless-tools wpagui curl openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm nano -y 
 DEBIAN_FRONTEND=noninteractive apt-get install network-manager vim-nox mc nmap fping tftpd isc-dhcp-server ansible procps iproute2 rsyslog iperf3 ssh git pwgen mingetty -y
+DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode -y
+
 debconf-set-selections < /root/debconf-keyboard-configuration.conf
 apt clean
 
@@ -62,6 +64,9 @@ chroot chroot/ /root/configure.sh
 cp -r configs/etc/ssh/* chroot/etc/ssh/
 cp -r configs/etc/systemd/system/* chroot/etc/systemd/system/
 cp -r configs/root/.ssh chroot/root/
+chmod 700 chroot/root/.ssh
+chmod 600 chroot/root/.ssh/*
+
 
 
 

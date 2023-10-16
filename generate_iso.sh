@@ -9,12 +9,10 @@ mksquashfs \
     $HOME/LIVE_BOOT/staging/live/filesystem.squashfs \
     -e boot
 
-
 cp $HOME/LIVE_BOOT/chroot/boot/vmlinuz-* \
     $HOME/LIVE_BOOT/staging/live/vmlinuz && \
 cp $HOME/LIVE_BOOT/chroot/boot/initrd.img-* \
     $HOME/LIVE_BOOT/staging/live/initrd
-
 
 cat <<'EOF' >$HOME/LIVE_BOOT/staging/isolinux/isolinux.cfg
 UI vesamenu.c32
@@ -143,5 +141,3 @@ xorriso \
     -append_partition 2 C12A7328-F81F-11D2-BA4B-00A0C93EC93B ${HOME}/LIVE_BOOT/staging/efiboot.img \
     "${HOME}/LIVE_BOOT/staging"
 
-
-#mksquashfs chroot filesystem.squashfs -e boot

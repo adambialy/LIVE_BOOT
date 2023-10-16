@@ -144,4 +144,4 @@ xorriso \
     "${HOME}/LIVE_BOOT/staging"
 
 
-mksquashfs chroot filesystem.squashfs -e boot
+#mksquashfs chroot filesystem.squashfs -e boot

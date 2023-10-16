@@ -2,7 +2,7 @@ DEFAULT linux
 
 LABEL linux
     kernel http://10.1.1.10/vmlinuz
-    APPEND initrd=http://10.1.1.10/initrd.gz dhcp boot=live fetch=http://10.1.1.10/filesystem.squashfs
+    APPEND initrd=http://10.1.1.10/initrd dhcp boot=live fetch=http://10.1.1.10/filesystem.squashfs
 
 PROMPT 0
 TIIMEOUT 0

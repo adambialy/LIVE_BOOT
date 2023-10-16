@@ -1,0 +1,4 @@
+@reboot dmidecode | txt2html > /var/www/html/index.html
+
+
+

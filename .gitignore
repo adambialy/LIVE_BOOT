@@ -2,4 +2,5 @@
 chroot/*
 staging/
 rts-live.iso
+filesystem.squashfs
 tmp/

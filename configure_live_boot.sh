@@ -36,8 +36,10 @@ apt-get update -y
 apt-get install debconf-utils -y
 DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends linux-image-amd64 live-boot systemd-sysv -y
 DEBIAN_FRONTEND=noninteractive apt-get install ${CHROOTAPTI} --no-install-recommends network-manager net-tools wireless-tools wpagui curl openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm nano -y 
-DEBIAN_FRONTEND=noninteractive apt-get install network-manager vim-nox mc nmap fping tftpd isc-dhcp-server ansible procps iproute2 rsyslog iperf3 ssh git pwgen mingetty -y
-DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode -y
+DEBIAN_FRONTEND=noninteractive apt-get install network-manager vim-nox mc nmap fping tftpd ansible procps iproute2 rsyslog iperf3 ssh git pwgen mingetty -y
+DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd pxelinux txt2html -y
+
+/lib/systemd/systemd-sysv-install enable lighttpd 2>/dev/null
 
 debconf-set-selections < /root/debconf-keyboard-configuration.conf
 apt clean
@@ -60,15 +62,26 @@ EOF
 chmod 700 $HOME/LIVE_BOOT/chroot/root/configure.sh
 chroot chroot/ /root/configure.sh
 
-# copy configs
+#copy configs
 cp -r configs/etc/ssh/* chroot/etc/ssh/
+
+#systemd config
 cp -r configs/etc/systemd/system/* chroot/etc/systemd/system/
+
+#dnsmasq
+cp -r configs/etc/ssh/dnsmasq.conf chroot/etc/ssh/
+
+#root ssh config
 cp -r configs/root/.ssh chroot/root/
 chmod 700 chroot/root/.ssh
 chmod 600 chroot/root/.ssh/*
 
 
+#tftp pxeboot
+mkdir chroot/srv/tftp
+cp staging/isolinux/* chroot/srv/tftp/
+cp chroot/usr/lib/PXELINUX/pxelinux.0 chroot/srv/tftp/
+cp -r configs/srv/pxelinux.cfg chroot/srv/tftp/
 
-
- 
- 
+#server info 
+cp configs/etc/cron.d/server.info chroot/etc/cron.d/

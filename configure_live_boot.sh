@@ -31,18 +31,22 @@ cp -r configs/debconf-keyboard-configuration.conf chroot/root/
 cat <<'EOF' >$HOME/LIVE_BOOT/chroot/root/configure.sh
 #!/bin/bash
 
-#apt
+# packages by apt
 apt-get update -y 
 apt-get install debconf-utils -y
 DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends linux-image-amd64 live-boot systemd-sysv -y
 # Install utils
 DEBIAN_FRONTEND=noninteractive apt-get install ${CHROOTAPTI} --no-install-recommends network-manager net-tools wireless-tools wpagui curl openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm nano -y 
-DEBIAN_FRONTEND=noninteractive apt-get install atop htop dmraid ethtool hdparm iftop jq minicom mtools wget -y
+DEBIAN_FRONTEND=noninteractive apt-get install atop htop dmraid ethtool hdparm iftop jq minicom mtools wget snapd -y
 DEBIAN_FRONTEND=noninteractive apt-get install network-manager vim-nox mc nmap fping tftpd ansible procps iproute2 rsyslog iperf3 ssh git pwgen mingetty -y
-DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd pxelinux txt2html -y
+DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd pxelinux txt2html fio stress stress-ng -y
 
 debconf-set-selections < /root/debconf-keyboard-configuration.conf
 apt clean
+
+# install packages by snap
+snap install core
+snap install nvtop
 
 # clone repo for RTS LIVE SYSTEM ansible
 #git clone https://github.com/adambialy/RTS_ansible /root/RTS_ansible

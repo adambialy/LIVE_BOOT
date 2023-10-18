@@ -39,7 +39,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends linux-ima
 DEBIAN_FRONTEND=noninteractive apt-get install ${CHROOTAPTI} --no-install-recommends network-manager net-tools wireless-tools wpagui curl openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm nano -y 
 DEBIAN_FRONTEND=noninteractive apt-get install atop htop dmraid ethtool hdparm iftop jq minicom mtools wget snapd -y
 DEBIAN_FRONTEND=noninteractive apt-get install network-manager vim-nox mc nmap fping tftpd ansible procps iproute2 rsyslog iperf3 ssh git pwgen mingetty -y
-DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd pxelinux txt2html fio stress stress-ng -y
+DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd pxelinux txt2html fio stress stress-ng pciutils usbutils -y
 
 debconf-set-selections < /root/debconf-keyboard-configuration.conf
 apt clean

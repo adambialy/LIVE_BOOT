@@ -44,7 +44,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode li
 # nvdia drivers
 echo "deb http://httpredir.debian.org/debian/ bullseye main contrib non-free" >> /etc/apt/sources.list.d/nvdia.list
 apt-get update -y
-DEBIAN_FRONTEND=noninteractive apt-get install nvidia-driver
+DEBIAN_FRONTEND=noninteractive apt-get install nvidia-driver -y
 
 debconf-set-selections < /root/debconf-keyboard-configuration.conf
 

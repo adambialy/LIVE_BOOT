@@ -41,7 +41,13 @@ DEBIAN_FRONTEND=noninteractive apt-get install atop htop dmraid ethtool hdparm i
 DEBIAN_FRONTEND=noninteractive apt-get install network-manager vim-nox mc nmap fping tftpd ansible procps iproute2 rsyslog iperf3 ssh git pwgen mingetty -y
 DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd pxelinux txt2html fio stress stress-ng pciutils usbutils -y
 
+# nvdia drivers
+echo "deb http://httpredir.debian.org/debian/ bullseye main contrib non-free" >> /etc/apt/sources.list.d/nvdia.list
+apt-get update -y
+DEBIAN_FRONTEND=noninteractive apt-get install nvidia-driver
+
 debconf-set-selections < /root/debconf-keyboard-configuration.conf
+
 apt clean
 
 # install packages by snap

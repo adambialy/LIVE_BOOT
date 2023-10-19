@@ -1,0 +1,9 @@
+[begin] (RTS Live)
+   [submenu] (Applications) 
+      [exec] (Bash)  {x-terminal-emulator  -T "Bash" -e sh -c "/bin/bash --login"} 
+      [exec] (Chromium)  {chromium --no-sandbox} 
+   [end]
+[nop] ()
+[exit] (Exit) 
+
+[end]

@@ -24,6 +24,14 @@ debootstrap \
     $HOME/LIVE_BOOT/chroot \
     http://ftp.us.debian.org/debian/
 
+
+cd $HOME/LIVE_BOOT/chroot  
+mount -t proc /proc proc/
+mount --rbind /sys sys/
+mount --rbind /dev dev/
+cd $HOME/LIVE_BOOT  
+
+
 # keyboard config
 cp -r configs/debconf-keyboard-configuration.conf chroot/root/
 
@@ -36,7 +44,7 @@ apt-get update -y
 apt-get install debconf-utils -y
 DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends linux-image-amd64 live-boot systemd-sysv -y
 # Install utils
-DEBIAN_FRONTEND=noninteractive apt-get install ${CHROOTAPTI} --no-install-recommends network-manager net-tools wireless-tools wpagui curl openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm nano -y 
+DEBIAN_FRONTEND=noninteractive apt-get install linux-headers-amd64 network-manager net-tools wireless-tools wpagui curl openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm nano -y 
 DEBIAN_FRONTEND=noninteractive apt-get install atop htop dmraid ethtool hdparm iftop jq minicom mtools wget snapd -y
 DEBIAN_FRONTEND=noninteractive apt-get install network-manager vim-nox mc nmap fping tftpd ansible procps iproute2 rsyslog iperf3 ssh git pwgen mingetty -y
 DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd pxelinux txt2html fio stress stress-ng pciutils usbutils -y
@@ -44,6 +52,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode li
 # nvdia drivers
 echo "deb http://httpredir.debian.org/debian/ bullseye main contrib non-free" >> /etc/apt/sources.list.d/nvdia.list
 apt-get update -y
+DEBIAN_FRONTEND=noninteractive apt-get install nvidia-kernel-dkms -y
 DEBIAN_FRONTEND=noninteractive apt-get install nvidia-driver -y
 
 debconf-set-selections < /root/debconf-keyboard-configuration.conf
@@ -72,16 +81,25 @@ EOF
 chmod 700 $HOME/LIVE_BOOT/chroot/root/configure.sh
 chroot chroot/ /root/configure.sh
 
-#copy configs
+#copy sshd config
 cp -r configs/etc/ssh/* chroot/etc/ssh/
 
-#systemd config
+#copy X11 config
+cp -r configs/etc/X11/* chroot/etc/X11/
+
+#copy systemd config
 cp -r configs/etc/systemd/system/* chroot/etc/systemd/system/
 
-#root ssh config
+#copy root ssh config
 cp -r configs/root/.ssh chroot/root/
 chmod 700 chroot/root/.ssh
 chmod 600 chroot/root/.ssh/*
+
+cd $HOME/LIVE_BOOT/chroot  
+umount proc/
+umount sys/
+umount dev/
+cd $HOME/LIVE_BOOT  
 
 
 #server info 

@@ -90,6 +90,12 @@ cp -r configs/etc/X11/* chroot/etc/X11/
 #copy systemd config
 cp -r configs/etc/systemd/system/* chroot/etc/systemd/system/
 
+#copy lighttpd config
+cp -r configs/etc/lighttpd/lighttpd.conf chroot/etc/lighttpd/lighttpd.conf
+
+#copy hosts file
+cp -r configs/etc/hosts chroot/etc/hosts
+
 #copy root ssh config
 cp -r configs/root/.ssh chroot/root/
 chmod 700 chroot/root/.ssh
@@ -100,12 +106,6 @@ umount proc/
 umount sys/
 umount dev/
 cd $HOME/LIVE_BOOT  
-
-
-#server info 
-cp configs/etc/cron.d/server.info chroot/etc/cron.d/
-
-
 
 #pxeboot
 

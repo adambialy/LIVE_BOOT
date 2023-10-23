@@ -1,0 +1,15 @@
+127.0.0.1	localhost
+::1		localhost ip6-localhost ip6-loopback
+ff02::1		ip6-allnodes
+ff02::2		ip6-allrouters
+
+
+10.1.1.10	control-srv
+10.1.1.11	gpu01
+10.1.1.12	gpu02
+10.1.1.13	gpu03
+10.1.1.14	gpu04
+10.1.1.15	gpu05
+10.1.1.16	gpu06
+10.1.1.16	gpu07
+

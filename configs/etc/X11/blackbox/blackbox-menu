@@ -1,7 +1,8 @@
 [begin] (RTS Live)
    [submenu] (Applications) 
-      [exec] (Bash)  {x-terminal-emulator  -T "Bash" -e sh -c "/bin/bash --login"} 
-      [exec] (Chromium)  {chromium --no-sandbox} 
+      [exec] (Console)  {x-terminal-emulator  -T "Bash" -e sh -c "/bin/bash --login"} 
+      [exec] (Ansible)  {x-terminal-emulator  -T "Bash" -e sh -c "cd /root/RTS_ansible; /bin/bash"} 
+      [exec] (Web Browser)  {surf http://localhost} 
    [end]
 [nop] ()
 [exit] (Exit) 

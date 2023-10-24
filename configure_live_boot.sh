@@ -41,13 +41,13 @@ cat <<'EOF' >$HOME/LIVE_BOOT/chroot/root/configure.sh
 
 # packages by apt
 apt-get update -y 
-apt-get install debconf-utils -y
+apt-get install debconf-utils locales -y
 DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends linux-image-amd64 live-boot systemd-sysv -y
 # Install utils
 DEBIAN_FRONTEND=noninteractive apt-get install linux-headers-amd64 network-manager net-tools wireless-tools wpagui curl openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm nano -y 
 DEBIAN_FRONTEND=noninteractive apt-get install atop htop dmraid ethtool hdparm iftop jq minicom mtools wget snapd -y
 DEBIAN_FRONTEND=noninteractive apt-get install network-manager vim-nox mc nmap fping tftpd ansible procps iproute2 rsyslog iperf3 ssh git pwgen mingetty -y
-DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd pxelinux txt2html fio stress stress-ng pciutils usbutils -y
+DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd pxelinux txt2html fio stress stress-ng pciutils usbutils surf -y
 
 # nvdia drivers
 echo "deb http://httpredir.debian.org/debian/ bullseye main contrib non-free" >> /etc/apt/sources.list.d/nvdia.list
@@ -91,7 +91,7 @@ cp -r configs/etc/X11/* chroot/etc/X11/
 cp -r configs/etc/systemd/system/* chroot/etc/systemd/system/
 
 #copy lighttpd config
-cp -r configs/etc/lighttpd/lighttpd.conf chroot/etc/lighttpd/lighttpd.conf
+cp configs/etc/lighttpd/lighttpd.conf chroot/etc/lighttpd/lighttpd.conf
 
 #copy hosts file
 cp -r configs/etc/hosts chroot/etc/hosts
@@ -173,13 +173,13 @@ set timeout=5
 
 # If X has issues finding screens, experiment with/without nomodeset.
 
-menuentry "Debian Live [EFI/GRUB]" {
+menuentry "Live Boot RTS [EFI/GRUB]" {
     search --no-floppy --set=root --label DEBLIVE
     linux ($root)/live/vmlinuz boot=live
     initrd ($root)/live/initrd
 }
 
-menuentry "Debian Live [EFI/GRUB] (nomodeset)" {
+menuentry "Live Boot RTS [EFI/GRUB] (nomodeset)" {
     search --no-floppy --set=root --label DEBLIVE
     linux ($root)/live/vmlinuz boot=live nomodeset
     initrd ($root)/live/initrd

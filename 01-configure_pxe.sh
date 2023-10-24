@@ -25,6 +25,8 @@ debootstrap \
     http://ftp.us.debian.org/debian/
 
 
+exit 0;
+
 cd $HOME/LIVE_BOOT/chroot  
 mount -t proc /proc proc/
 mount --rbind /sys sys/
@@ -101,11 +103,19 @@ cp -r configs/root/.ssh chroot/root/
 chmod 700 chroot/root/.ssh
 chmod 600 chroot/root/.ssh/*
 
+echo "at this point reboot is the easiest way of dismounting sys dev and proc"
+
 cd $HOME/LIVE_BOOT/chroot  
-umount proc/
-umount sys/
-umount dev/
+umount -lf dev/pts
+umount -lf dev
+umount -lf proc
+umount sys	
 cd $HOME/LIVE_BOOT  
+
+exit 0;
+
+
+
 
 #pxeboot
 

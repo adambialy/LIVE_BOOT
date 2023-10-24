@@ -4,6 +4,8 @@
 
 mkdir -p $HOME/LIVE_BOOT/{staging/{EFI/BOOT,boot/grub/x86_64-efi,isolinux,live},tmp}
 
+rm -f $HOME/LIVE_BOOT/staging/live/filesystem.squashfs
+
 mksquashfs \
     $HOME/LIVE_BOOT/chroot \
     $HOME/LIVE_BOOT/staging/live/filesystem.squashfs \

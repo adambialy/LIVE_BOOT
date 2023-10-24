@@ -25,8 +25,6 @@ debootstrap \
     http://ftp.us.debian.org/debian/
 
 
-exit 0;
-
 cd $HOME/LIVE_BOOT/chroot  
 mount -t proc /proc proc/
 mount --rbind /sys sys/

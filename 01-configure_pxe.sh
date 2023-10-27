@@ -47,13 +47,18 @@ DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends linux-ima
 DEBIAN_FRONTEND=noninteractive apt-get install linux-headers-amd64 network-manager net-tools wireless-tools wpagui curl openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm nano -y 
 DEBIAN_FRONTEND=noninteractive apt-get install atop htop dmraid ethtool hdparm iftop jq minicom mtools wget snapd -y
 DEBIAN_FRONTEND=noninteractive apt-get install network-manager vim-nox mc nmap fping tftpd ansible procps iproute2 rsyslog iperf3 ssh git pwgen mingetty -y
-DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd pxelinux txt2html fio stress stress-ng pciutils usbutils surf -y
+DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd php-fpm pxelinux txt2html fio stress stress-ng pciutils usbutils surf -y
+
+# enable php module
+lighty-enable-mod fastcgi-php-fpm
 
 # nvdia drivers
 echo "deb http://httpredir.debian.org/debian/ bullseye main contrib non-free" >> /etc/apt/sources.list.d/nvdia.list
 apt-get update -y
 DEBIAN_FRONTEND=noninteractive apt-get install nvidia-kernel-dkms -y
 DEBIAN_FRONTEND=noninteractive apt-get install nvidia-driver -y
+
+
 
 debconf-set-selections < /root/debconf-keyboard-configuration.conf
 

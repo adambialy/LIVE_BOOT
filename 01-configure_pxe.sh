@@ -58,8 +58,6 @@ apt-get update -y
 DEBIAN_FRONTEND=noninteractive apt-get install nvidia-kernel-dkms -y
 DEBIAN_FRONTEND=noninteractive apt-get install nvidia-driver -y
 
-
-
 debconf-set-selections < /root/debconf-keyboard-configuration.conf
 
 apt clean
@@ -116,8 +114,6 @@ umount sys
 cd $HOME/LIVE_BOOT  
 
 exit 0;
-
-
 
 
 #pxeboot

@@ -45,7 +45,7 @@ apt-get install debconf-utils locales -y
 DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends linux-image-amd64 live-boot systemd-sysv -y
 # Install utils
 DEBIAN_FRONTEND=noninteractive apt-get install linux-headers-amd64 network-manager net-tools wireless-tools wpagui curl openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm nano -y 
-DEBIAN_FRONTEND=noninteractive apt-get install atop htop dmraid ethtool hdparm iftop jq minicom mtools wget snapd -y
+DEBIAN_FRONTEND=noninteractive apt-get install atop htop dmraid ethtool hdparm iftop jq bc minicom mtools wget snapd -y
 DEBIAN_FRONTEND=noninteractive apt-get install network-manager vim-nox mc nmap fping tftpd ansible procps iproute2 rsyslog iperf3 ssh git pwgen mingetty -y
 DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd php-fpm pxelinux txt2html fio stress stress-ng pciutils usbutils surf -y
 

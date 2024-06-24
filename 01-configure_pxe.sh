@@ -56,8 +56,7 @@ lighty-enable-mod fastcgi-php-fpm
 echo "deb http://httpredir.debian.org/debian/ bullseye main contrib non-free" >> /etc/apt/sources.list.d/nvdia.list
 apt-get update -y
 DEBIAN_FRONTEND=noninteractive apt-get install nvidia-kernel-dkms -y
-DEBIAN_FRONTEND=noninteractive apt-get install nvidia-driver -y
-DEBIAN_FRONTEND=noninteractive apt install nvidia-cuda-dev nvidia-driver -y
+DEBIAN_FRONTEND=noninteractive apt install nvidia-cuda-dev nvidia-cuda-toolkit nvidia-driver -y
 
 
 debconf-set-selections < /root/debconf-keyboard-configuration.conf

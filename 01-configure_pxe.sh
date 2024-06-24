@@ -99,6 +99,9 @@ cp -r configs/etc/X11/* chroot/etc/X11/
 #copy systemd config
 cp -r configs/etc/systemd/system/* chroot/etc/systemd/system/
 
+# network config for admin node
+cat configs/etc/network/interfaces > chroot/etc/network/interfaces
+
 #copy lighttpd config
 cp configs/etc/lighttpd/lighttpd.conf chroot/etc/lighttpd/lighttpd.conf
 

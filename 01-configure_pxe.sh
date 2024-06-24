@@ -45,9 +45,9 @@ apt-get update -y
 apt-get install debconf-utils locales -y
 DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends linux-image-amd64 live-boot systemd-sysv -y
 # Install utils
-DEBIAN_FRONTEND=noninteractive apt-get install linux-headers-amd64 network-manager net-tools wireless-tools wpagui curl openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm nano fdisk -y 
+DEBIAN_FRONTEND=noninteractive apt-get install linux-headers-amd64 network-manager net-tools tcpdump netcat iputils-ping wireless-tools wpagui curl openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm nano fdisk -y 
 DEBIAN_FRONTEND=noninteractive apt-get install atop htop dmraid ethtool hdparm iftop jq bc minicom mtools wget snapd ifupdown2 lm-sensors iotop tmux -y
-DEBIAN_FRONTEND=noninteractive apt-get install network-manager vim-nox mc nmap fping tftpd ansible procps iproute2 rsyslog iperf3 ssh git pwgen mingetty -y
+DEBIAN_FRONTEND=noninteractive apt-get install network-manager vim-nox mc nmap ntfs-3g xfsprogs e2fsprogs btrfs-progs dosfstools screen testdisk nwipe rclone fping tftpd ansible procps iproute2 rsyslog iperf3 ssh git pwgen mingetty -y
 DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd php-fpm pxelinux txt2html fio stress stress-ng pciutils usbutils surf nvidia-cuda-toolkit nvidia-cuda-dev -y
 # enable php module
 lighty-enable-mod fastcgi-php-fpm
@@ -57,8 +57,7 @@ echo "deb http://httpredir.debian.org/debian/ bullseye main contrib non-free" >>
 apt-get update -y
 DEBIAN_FRONTEND=noninteractive apt-get install nvidia-kernel-dkms -y
 DEBIAN_FRONTEND=noninteractive apt-get install nvidia-driver -y
-DEBIAN_FRONTEND=noninteractive apt install nvidia-cuda-dev -y
-DEBIAN_FRONTEND=noninteractive apt install nvidia-cuda-toolkit -y
+DEBIAN_FRONTEND=noninteractive apt install nvidia-cuda-dev nvidia-driver -y
 
 
 debconf-set-selections < /root/debconf-keyboard-configuration.conf

@@ -64,8 +64,6 @@ debconf-set-selections < /root/debconf-keyboard-configuration.conf
 apt clean
 
 # install packages by snap
-#snap install core
-#snap install nvtop
 
 # clone repo for RTS LIVE SYSTEM ansible
 git clone https://github.com/adambialy/RTS_ansible /root/RTS_ansible
@@ -112,7 +110,7 @@ cp configs/usr/bin/test_result.sh chroot/usr/bin/test_result.sh
 chmod 775  chroot/usr/bin/test_result.sh
 
 #copy index.php and servers.php
-mkdir -P chroot/var/www/html
+mkdir -p chroot/var/www/html
 chmod 777 chroot/var/www/html
 chmod 777 chroot/var/www
 cp configs/var/www/html/index.php chroot/var/www/html/index.php

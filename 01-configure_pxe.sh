@@ -14,6 +14,7 @@ apt-get install \
     mc \
     vim-nox \
     nmap \
+    sensible-utils \
     net-tools -y
 
 
@@ -45,10 +46,9 @@ apt-get install debconf-utils locales -y
 DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends linux-image-amd64 live-boot systemd-sysv -y
 # Install utils
 DEBIAN_FRONTEND=noninteractive apt-get install linux-headers-amd64 network-manager net-tools wireless-tools wpagui curl openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm nano -y 
-DEBIAN_FRONTEND=noninteractive apt-get install atop htop dmraid ethtool hdparm iftop jq bc minicom mtools wget snapd ifupdown2 -y
+DEBIAN_FRONTEND=noninteractive apt-get install atop htop dmraid ethtool hdparm iftop jq bc minicom mtools wget snapd ifupdown2 lm-sensors iotop tmux -y
 DEBIAN_FRONTEND=noninteractive apt-get install network-manager vim-nox mc nmap fping tftpd ansible procps iproute2 rsyslog iperf3 ssh git pwgen mingetty -y
-DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd php-fpm pxelinux txt2html fio stress stress-ng pciutils usbutils surf -y
-
+DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd php-fpm pxelinux txt2html fio stress stress-ng pciutils usbutils surf nvidia-cuda-toolkit nvidia-cuda-dev -y
 # enable php module
 lighty-enable-mod fastcgi-php-fpm
 
@@ -63,11 +63,18 @@ debconf-set-selections < /root/debconf-keyboard-configuration.conf
 apt clean
 
 # install packages by snap
-snap install core
-snap install nvtop
+#snap install core
+#snap install nvtop
 
 # clone repo for RTS LIVE SYSTEM ansible
-#git clone https://github.com/adambialy/RTS_ansible /root/RTS_ansible
+git clone https://github.com/adambialy/RTS_ansible /root/RTS_ansible
+
+# gpu-burn
+cd /root
+git clone https://github.com/wilicc/gpu-burn
+cd gpu-burn
+make
+cd /root
 
 # set hostname
 echo "rts-pxeboot" > /etc/hostname

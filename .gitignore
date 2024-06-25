@@ -4,3 +4,4 @@ staging/
 rts-live.iso
 filesystem.squashfs
 tmp/
+lost+found/

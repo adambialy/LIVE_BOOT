@@ -49,7 +49,7 @@ apt-get install debconf-utils locales -y
 
 DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends linux-image-amd64 live-boot systemd-sysv -y
 # Install utils
-DEBIAN_FRONTEND=noninteractive apt-get install linux-headers-amd64 network-manager net-tools tcpdump netcat iputils-ping wireless-tools wpagui curl openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm nano fdisk -y 
+DEBIAN_FRONTEND=noninteractive apt-get install linux-headers-amd64 network-manager net-tools tcpdump netcat iputils-ping wireless-tools wpagui curl links lynx openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm nano fdisk -y 
 DEBIAN_FRONTEND=noninteractive apt-get install atop htop dmraid ethtool hdparm iftop jq bc minicom mtools wget snapd ifupdown2 lm-sensors iotop tmux -y
 DEBIAN_FRONTEND=noninteractive apt-get install network-manager vim-nox mc nmap ntfs-3g xfsprogs e2fsprogs btrfs-progs dosfstools screen testdisk nwipe rclone fping tftpd ansible procps iproute2 rsyslog iperf3 ssh git pwgen mingetty -y
 DEBIAN_FRONTEND=noninteractive apt-get install iputils-ping dnsmasq dmidecode lighttpd php-fpm pxelinux txt2html fio stress stress-ng pciutils usbutils surf -y
@@ -140,7 +140,24 @@ cd $HOME/LIVE_BOOT
 exit 0;
 
 
-#pxeboot
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 mkdir -p $HOME/LIVE_BOOT/{staging/{EFI/BOOT,boot/grub/x86_64-efi,isolinux,live},tmp}
 

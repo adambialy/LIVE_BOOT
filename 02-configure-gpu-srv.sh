@@ -98,13 +98,16 @@ EOF
 cp /usr/lib/ISOLINUX/isolinux.bin "${HOME}/LIVE_BOOT/staging/isolinux/" && \
 cp /usr/lib/syslinux/modules/bios/* "${HOME}/LIVE_BOOT/staging/isolinux/"
 cp -r /usr/lib/grub/x86_64-efi/* "${HOME}/LIVE_BOOT/staging/boot/grub/x86_64-efi/"
+
 mkdir chroot/srv/tftp
-cp chroot/usr/lib/PXELINUX/pxelinux.0 chroot/srv/tftp/
-cp -r configs/srv/pxelinux.cfg chroot/srv/tftp/
-cp staging/live/filesystem.squashfs chroot/var/www/html/
-cp chroot/boot/vmlinuz-* chroot/var/www/html/vmlinuz
-cp chroot/boot/initrd.img-* chroot/var/www/html/initrd
-cp staging/isolinux/* chroot/srv/tftp/
+
+# uncomment if you need pxeboot
+#cp chroot/usr/lib/PXELINUX/pxelinux.0 chroot/srv/tftp/
+#cp -r configs/srv/pxelinux.cfg chroot/srv/tftp/
+#cp staging/live/filesystem.squashfs chroot/var/www/html/
+#cp chroot/boot/vmlinuz-* chroot/var/www/html/vmlinuz
+#cp chroot/boot/initrd.img-* chroot/var/www/html/initrd
+#cp staging/isolinux/* chroot/srv/tftp/
 
 # live boot
 
@@ -117,7 +120,7 @@ apt clean
 git clone https://github.com/adambialy/RTS_ansible /root/RTS_ansible
 
 # set hostname
-echo "rts-live" > /etc/hostname
+echo "rts-live-control" > /etc/hostname
 EOF
 
 

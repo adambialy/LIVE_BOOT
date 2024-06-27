@@ -70,7 +70,9 @@ apt clean
 # install packages by snap
 
 # clone repo for RTS LIVE SYSTEM ansible
-git clone https://github.com/adambialy/RTS_ansible /root/RTS_ansible
+#git clone https://github.com/adambialy/RTS_ansible /root/RTS_ansible
+# or create directory for mounting USB
+mkdir /root/RTS_ansible
 
 # gpu-burn
 cd /root

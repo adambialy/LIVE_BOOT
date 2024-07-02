@@ -38,7 +38,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install linux-headers-amd64 -y
 DEBIAN_FRONTEND=noninteractive apt-get install blackbox xserver-xorg-core xserver-xorg xinit xterm nano fdisk surf -y
 
 # utils
-DEBIAN_FRONTEND=noninteractive apt-get install txt2html procps git pwgen mingetty ansible iftop jq bc mtools lm-sensors iotop tmux vim-nox mc screen dmidecode -y
+DEBIAN_FRONTEND=noninteractive apt-get install txt2html procps git pwgen mingetty ansible iftop jq bc mtools lm-sensors iotop tmux vim-nox mc screen dmidecode html2txt -y
 
 # network tools
 DEBIAN_FRONTEND=noninteractive apt-get install nmap minicom ethtool iperf3 ssh dnsmasq tftpd iproute2 wget snmp fping network-manager net-tools tcpdump netcat iputils-ping wireless-tools wpagui curl links lynx openssh-client pxelinux lighttpd php-fpm ifupdown -y

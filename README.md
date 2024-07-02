@@ -5,9 +5,9 @@ Rack Test System - live boot Debian
 
 2. apt update/upgrade
 
-3. Install git "apt install git -y"
+3. Install git ```apt install git -y```
 
-4. cd /root && git clone https://github.com/adambialy/LIVE_BOOT.git	
+4. ``` cd /root && git clone https://github.com/adambialy/LIVE_BOOT.git ```
 
 5. cd LIVE_BOOT
 
@@ -28,7 +28,8 @@ optional
 
 8. install lighttpd on VM with config:
 
-```server.modules = (
+```
+server.modules = (
 	"mod_indexfile",
 	"mod_access",
 	"mod_alias",

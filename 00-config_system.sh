@@ -17,6 +17,7 @@ apt-get install \
     vim-nox \
     nmap \
     sensible-utils \
-    net-tools -y
+    net-tools \
+    alien -y
 
 

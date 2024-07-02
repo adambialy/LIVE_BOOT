@@ -133,6 +133,17 @@ chmod 600 chroot/root/.ssh/*
 # copy control server start script
 cp configs/usr/sbin/start_control_server chroot/usr/sbin/
 
+# MegaCli install
+wget --user=hetzner --password=download http://download.hetzner.de/tools/LSI/tools/MegaCLI/8.07.14_MegaCLI.zip
+unzip 8.07.14_MegaCLI.zip -d mega
+cd mega/Linux/
+alien MegaCli-8.07.14-1.noarch.rpm 
+cd /root/LIVE_BOOT/
+cp mega/Linux/megacli_8.07.14-2_all.deb chroot/tmp/
+chroot chroot/ dpkg -i /tmp/megacli_8.07.14-2_all.deb
+
+
+
 echo "at this point reboot is the easiest way of dismounting sys dev and proc"
 
 cd $HOME/LIVE_BOOT/chroot  

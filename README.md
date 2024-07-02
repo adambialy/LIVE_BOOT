@@ -67,6 +67,6 @@ server.modules += (
 
 9. copy rts-live.iso to /var/www/html
 
-10. In balena etcher you can "flash from url" http://[vm_ip]/rts-live.iso
+10. In balena etcher you can "flash from url" ``` http://[vm_ip]/rts-live.iso ```
 
 

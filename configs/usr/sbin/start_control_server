@@ -1,0 +1,27 @@
+#!/bin/bash
+INT_FILE="/etc/network/interfaces"
+
+# make sure networkManager is not running
+serviceure NetworkManager stop
+kill -9 `ps ax | grep NetworkManager | grep -v grep | awk '{print $1}'`
+service NetworkManager stop
+kill -9 `ps ax | grep NetworkManager | grep -v grep | awk '{print $1}'`
+service NetworkManager stop
+kill -9 `ps ax | grep NetworkManager | grep -v grep | awk '{print $1}'`
+service NetworkManager stop
+
+cat <<'EOF' >${INT_FILE}
+auto lo
+iface lo inet loopback
+auto eno12399np0
+iface eno12399np0 inet static
+address 10.1.1.10/24
+EOF
+
+ifup eno12399np0
+service dnsmasq start
+service lighttpd start
+
+hostnamectl set-hostname control-`dmidecode -s system-serial-number`
+bash
+

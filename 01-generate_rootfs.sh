@@ -130,6 +130,9 @@ cp -r configs/root/.ssh chroot/root/
 chmod 700 chroot/root/.ssh
 chmod 600 chroot/root/.ssh/*
 
+# copy control server start script
+cp configs/usr/sbin/start_control_server chroot/usr/sbin/
+
 echo "at this point reboot is the easiest way of dismounting sys dev and proc"
 
 cd $HOME/LIVE_BOOT/chroot  

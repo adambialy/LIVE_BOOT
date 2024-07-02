@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# pxeboot image gen
+# The script for generating ISO image
+
+rm -f staging/live/*
 
 mkdir -p $HOME/LIVE_BOOT/{staging/{EFI/BOOT,boot/grub/x86_64-efi,isolinux,live},tmp}
-
-rm -f $HOME/LIVE_BOOT/staging/live/filesystem.squashfs
 
 mksquashfs \
     $HOME/LIVE_BOOT/chroot \
@@ -15,13 +15,6 @@ cp $HOME/LIVE_BOOT/chroot/boot/vmlinuz-* \
     $HOME/LIVE_BOOT/staging/live/vmlinuz && \
 cp $HOME/LIVE_BOOT/chroot/boot/initrd.img-* \
     $HOME/LIVE_BOOT/staging/live/initrd
-
-
-cp $HOME/LIVE_BOOT/chroot/boot/vmlinuz-* \
-    $HOME/LIVE_BOOT/staging/live/vmlinuz && \
-cp $HOME/LIVE_BOOT/chroot/boot/initrd.img-* \
-    $HOME/LIVE_BOOT/staging/live/initrd
-
 
 cat <<'EOF' >$HOME/LIVE_BOOT/staging/isolinux/isolinux.cfg
 UI vesamenu.c32
@@ -68,13 +61,13 @@ set timeout=5
 
 # If X has issues finding screens, experiment with/without nomodeset.
 
-menuentry "Live Boot RTS [EFI/GRUB]" {
+menuentry "Debian Live [EFI/GRUB]" {
     search --no-floppy --set=root --label DEBLIVE
     linux ($root)/live/vmlinuz boot=live
     initrd ($root)/live/initrd
 }
 
-menuentry "Live Boot RTS [EFI/GRUB] (nomodeset)" {
+menuentry "Debian Live [EFI/GRUB] (nomodeset)" {
     search --no-floppy --set=root --label DEBLIVE
     linux ($root)/live/vmlinuz boot=live nomodeset
     initrd ($root)/live/initrd
@@ -95,39 +88,58 @@ fi
 configfile "${cmdpath}/grub.cfg"
 EOF
 
+
 cp /usr/lib/ISOLINUX/isolinux.bin "${HOME}/LIVE_BOOT/staging/isolinux/" && \
 cp /usr/lib/syslinux/modules/bios/* "${HOME}/LIVE_BOOT/staging/isolinux/"
+
 cp -r /usr/lib/grub/x86_64-efi/* "${HOME}/LIVE_BOOT/staging/boot/grub/x86_64-efi/"
 
-mkdir chroot/srv/tftp
+grub-mkstandalone -O i386-efi \
+    --modules="part_gpt part_msdos fat iso9660" \
+    --locales="" \
+    --themes="" \
+    --fonts="" \
+    --output="$HOME/LIVE_BOOT/staging/EFI/BOOT/BOOTIA32.EFI" \
+    "boot/grub/grub.cfg=$HOME/LIVE_BOOT/tmp/grub-embed.cfg"
 
-# uncomment if you need pxeboot
-#cp chroot/usr/lib/PXELINUX/pxelinux.0 chroot/srv/tftp/
-#cp -r configs/srv/pxelinux.cfg chroot/srv/tftp/
-#cp staging/live/filesystem.squashfs chroot/var/www/html/
-#cp chroot/boot/vmlinuz-* chroot/var/www/html/vmlinuz
-#cp chroot/boot/initrd.img-* chroot/var/www/html/initrd
-#cp staging/isolinux/* chroot/srv/tftp/
+grub-mkstandalone -O x86_64-efi \
+    --modules="part_gpt part_msdos fat iso9660" \
+    --locales="" \
+    --themes="" \
+    --fonts="" \
+    --output="$HOME/LIVE_BOOT/staging/EFI/BOOT/BOOTx64.EFI" \
+    "boot/grub/grub.cfg=$HOME/LIVE_BOOT/tmp/grub-embed.cfg"
 
-# live boot
+(cd $HOME/LIVE_BOOT/staging && \
+    dd if=/dev/zero of=efiboot.img bs=1M count=20 && \
+    mkfs.vfat efiboot.img && \
+    mmd -i efiboot.img ::/EFI ::/EFI/BOOT && \
+    mcopy -vi efiboot.img \
+        $HOME/LIVE_BOOT/staging/EFI/BOOT/BOOTIA32.EFI \
+        $HOME/LIVE_BOOT/staging/EFI/BOOT/BOOTx64.EFI \
+        $HOME/LIVE_BOOT/staging/boot/grub/grub.cfg \
+        ::/EFI/BOOT/
+)
 
-cat <<'EOF' >$HOME/LIVE_BOOT/chroot/root/configure.sh
-#!/bin/bash
-DEBIAN_FRONTEND=noninteractive apt-get install dnsmasq -y
-apt clean
-
-# clone repo for RTS LIVE SYSTEM ansible
-git clone https://github.com/adambialy/RTS_ansible /root/RTS_ansible
-
-# set hostname
-echo "rts-live-control" > /etc/hostname
-EOF
-
-
-chmod 700 $HOME/LIVE_BOOT/chroot/root/configure.sh
-chroot chroot/ /root/configure.sh
-
-#copy dnsmasq config
-cp -r configs/etc/dnsmasq.conf chroot/etc/
-
+xorriso \
+    -as mkisofs \
+    -iso-level 3 \
+    -o "${HOME}/LIVE_BOOT/rts-live.iso" \
+    -full-iso9660-filenames \
+    -volid "DEBLIVE" \
+    --mbr-force-bootable -partition_offset 16 \
+    -joliet -joliet-long -rational-rock \
+    -isohybrid-mbr /usr/lib/ISOLINUX/isohdpfx.bin \
+    -eltorito-boot \
+        isolinux/isolinux.bin \
+        -no-emul-boot \
+        -boot-load-size 4 \
+        -boot-info-table \
+        --eltorito-catalog isolinux/isolinux.cat \
+    -eltorito-alt-boot \
+        -e --interval:appended_partition_2:all:: \
+        -no-emul-boot \
+        -isohybrid-gpt-basdat \
+    -append_partition 2 C12A7328-F81F-11D2-BA4B-00A0C93EC93B ${HOME}/LIVE_BOOT/staging/efiboot.img \
+    "${HOME}/LIVE_BOOT/staging"
 

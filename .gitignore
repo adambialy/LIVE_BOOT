@@ -1,7 +1,7 @@
 !chroot
 chroot/*
 staging/
-rts-live.iso
+*.iso
 filesystem.squashfs
 tmp/
 lost+found/

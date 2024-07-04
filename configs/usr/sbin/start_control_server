@@ -1,6 +1,7 @@
 #!/bin/bash
 INT_FILE="/etc/network/interfaces"
 
+mkdir /srv/tftp
 # make sure networkManager is not running
 serviceure NetworkManager stop
 kill -9 `ps ax | grep NetworkManager | grep -v grep | awk '{print $1}'`

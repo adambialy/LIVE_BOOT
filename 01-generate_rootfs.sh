@@ -38,7 +38,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install linux-headers-amd64 -y
 DEBIAN_FRONTEND=noninteractive apt-get install blackbox xserver-xorg-core xserver-xorg xinit xterm nano fdisk surf -y
 
 # utils
-DEBIAN_FRONTEND=noninteractive apt-get install txt2html procps git pwgen mingetty ansible iftop jq bc mtools lm-sensors iotop tmux vim-nox mc screen dmidecode html2txt -y
+DEBIAN_FRONTEND=noninteractive apt-get install txt2html procps git pwgen mingetty ansible iftop jq bc mtools lm-sensors iotop tmux vim-nox mc screen dmidecode html2text -y
 
 # network tools
 DEBIAN_FRONTEND=noninteractive apt-get install nmap minicom ethtool iperf3 ssh dnsmasq tftpd iproute2 wget snmp fping network-manager net-tools tcpdump netcat iputils-ping wireless-tools wpagui curl links lynx openssh-client pxelinux lighttpd php-fpm ifupdown -y
@@ -133,14 +133,14 @@ chmod 600 chroot/root/.ssh/*
 # copy control server start script
 cp configs/usr/sbin/start_control_server chroot/usr/sbin/
 
-# MegaCli install
-wget --user=hetzner --password=download http://download.hetzner.de/tools/LSI/tools/MegaCLI/8.07.14_MegaCLI.zip
-unzip 8.07.14_MegaCLI.zip -d mega
-cd mega/Linux/
-alien MegaCli-8.07.14-1.noarch.rpm 
-cd /root/LIVE_BOOT/
-cp mega/Linux/megacli_8.07.14-2_all.deb chroot/tmp/
-chroot chroot/ dpkg -i /tmp/megacli_8.07.14-2_all.deb
+# MegaCli install - optional uncomment for installation of MegaCli
+#wget --user=hetzner --password=download http://download.hetzner.de/tools/LSI/tools/MegaCLI/8.07.14_MegaCLI.zip
+#unzip 8.07.14_MegaCLI.zip -d mega
+#cd mega/Linux/
+#alien MegaCli-8.07.14-1.noarch.rpm 
+#cd /root/LIVE_BOOT/
+#cp mega/Linux/megacli_8.07.14-2_all.deb chroot/tmp/
+#chroot chroot/ dpkg -i /tmp/megacli_8.07.14-2_all.deb
 
 
 

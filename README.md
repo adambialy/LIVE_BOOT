@@ -70,6 +70,5 @@ server.modules += (
 
 10. In balena etcher you can "flash from url" ``` http://[vm_ip]/rts-live.iso ```
 
-fleetctl package --type=msi --enable-scripts --fleet-url=https://fleet.chi.swan.ac.uk --enroll-secret=GZ04jklQlxyOp7zXIcb3zDJ+RBtik6hU --fleet-certificate=/etc/fleet/certs/fleet.pem
 
 

@@ -1,0 +1,18 @@
+[begin] (RTS Live)
+   [submenu] (Stress Tests) 
+      [exec] (CPU Stress 20min @80%)  {x-terminal-emulator -T "CPU Stress Test" -e sh -c "/root/CPU.sh 80 1200"} 
+      [exec] (CPU Stress 10min @80%)  {x-terminal-emulator -T "CPU stress Test" -e sh -c "/root/CPU.sh 80 600"} 
+      [exec] (GPU Stress 20min @50%)  {x-terminal-emulator -T "GPU Stress Test" -e sh -c "/root/GPU.sh 50 1200"} 
+      [exec] (GPU Stress 10min @50%)  {x-terminal-emulator -T "GPU Stress Test" -e sh -c "/root/GPU.sh 50 1200"} 
+      [exec] (GPU Stress 20min @80%)  {x-terminal-emulator -T "GPU Stress Test" -e sh -c "/root/GPU.sh 80 1200"} 
+      [exec] (GPU Stress 10min @80%)  {x-terminal-emulator -T "GPU Stress Test" -e sh -c "/root/GPU.sh 80 600"} 
+   [end]
+   [submenu] (Applications) 
+      [exec] (htop)  {x-terminal-emulator -geometry 100x40 -fa "Monospace"-fs 10 -T "HTOP" -e sh -c "htop"} 
+      [exec] (nvdia-smi)  {x-terminal-emulator -geometry 100x45 -fa "Monospace"-fs 10 -T "nvdia-smi" -e sh -c "watch -n 1 nvdia-smi"} 
+      [exec] (Console)  {x-terminal-emulator -geometry 100x40 -fa "Monospace"-fs 10 -T "Bash" -e sh -c "/bin/bash --login"} 
+   [end]
+[nop] ()
+[exit] (Exit) 
+
+[end]

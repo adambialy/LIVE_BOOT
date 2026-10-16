@@ -27,4 +27,7 @@ apt-get install \
 mkdir /root/lv ; cd /root/lv
 lb clean
 lb config --mode debian --system live --interactive shell --distribution trixie --architecture amd64 --archive-areas "main contrib non-free" --bootappend-live "boot=live" --bootloaders "syslinux" --security true --updates true --binary-images iso-hybrid --memtest none
+cd /root
+cp -r LIVE_BOOT/lv/* lv/
+cd /root
 lb build

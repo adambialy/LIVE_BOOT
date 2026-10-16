@@ -19,8 +19,16 @@ The system focus is on thermal capacity, but there is plenty of useful tools (fu
 ```
 00-config_system.sh 
 ```
+7. From inside chroot run:
+```
+	apt install git vim-nox -y
+	cd /root
+	git clone https://github.com/adambialy/LIVE_BOOT.git
+	git clone https://github.com/adambialy/RTS_ansible.git
+	cd LIVE_BOOT/
+	git checkout deb13
+```
 
-7. From inside chroot run install script
 
 8. exit to finish configuration
 

@@ -8,9 +8,9 @@
       [exec] (GPU Stress 10min @80%)  {x-terminal-emulator -T "GPU Stress Test" -e sh -c "/root/GPU.sh 80 600"} 
    [end]
    [submenu] (Applications) 
-      [exec] (htop - cpu monitor)  {x-terminal-emulator -geometry 100x40 -fa "Monospace"-fs 10 -T "HTOP" -e sh -c "htop"} 
-      [exec] (nvdia-smi - nvdia monitoring tool)  {x-terminal-emulator -geometry 100x45 -fa "Monospace"-fs 10 -T "nvidia-smi" -e sh -c "watch -n 1 nvidia-smi"} 
-      [exec] (Console)  {x-terminal-emulator -geometry 100x40 -fa "Monospace"-fs 10 -T "Bash" -e sh -c "/bin/bash --login"} 
+      [exec] (htop - cpu monitor)  {x-terminal-emulator -T "HTOP" -e sh -c "htop"} 
+      [exec] (nvdia-smi - nvdia monitoring tool)  {x-terminal-emulator -T "nvidia-smi" -e sh -c "watch -n 1 nvidia-smi"} 
+      [exec] (Console)  {x-terminal-emulator -T "Bash" -e sh -c "/bin/bash --login"} 
    [end]
 [nop] ()
 [exit] (Exit) 

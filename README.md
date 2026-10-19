@@ -15,10 +15,13 @@ The system focus is on thermal capacity, but there is plenty of useful tools (fu
 5. cd LIVE_BOOT
 
 6. run script:
+```
+./00-config_system.sh 
+```
+to install all packages and tools necesary for live build, initialize build env. and run initial build.
 
-```
-00-config_system.sh 
-```
+wait until you'll have prompt insie chroot environment
+
 7. From inside chroot run:
 ```
 	apt install git vim-nox -y
@@ -29,6 +32,7 @@ The system focus is on thermal capacity, but there is plenty of useful tools (fu
 	git checkout deb13
 ```
 
+This will clone repos inside chroot env.
 
 8. exit to finish configuration
 

@@ -16,11 +16,11 @@ The system focus is on thermal capacity, but there is plenty of useful tools (fu
 
 6. run script:
 ```
-./00-config_system.sh 
+./config_host.sh 
 ```
-to install all packages and tools necesary for live build, initialize build env. and run initial build.
+The script will install all packages and tools necesary for live build, initialize build env. and run initial build.
 
-wait until you'll have prompt insie chroot environment starts will (live)
+Wait until you'll have prompt insie chroot environment starts will (live)
 
 7. From inside chroot run:
 ```
@@ -36,6 +36,14 @@ wait until you'll have prompt insie chroot environment starts will (live)
 
 This will clone repos inside chroot env.
 
-8. exit to finish configuration
+8. Run install chrood configure script:
 
-9. Download iso and write to usb
+```
+	/root/configure_chroot.sh
+```
+
+9. Exit live env (exit command), and wait until iso is generated.
+
+The iso image will be called live-image-amd64.hybrid.iso
+
+10. Write iso image to usb stick with dd, balena or similar tools.

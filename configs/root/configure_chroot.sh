@@ -30,4 +30,19 @@ cp /root/LIVE_BOOT/configs/root/.ssh/* /root/.ssh/
 chmod 600 /root/.ssh/authorized_keys 
 chmod 600 /root/.ssh/id_rsa          
 chmod 600 /root/.ssh/known_hosts 
+cp LIVE_BOOT/configs/root/CPU.sh /root/
+cp LIVE_BOOT/configs/root/GPU.sh /root/
+cp LIVE_BOOT/configs/root/debconf-keyboard-configuration.conf /root/
+cp -r LIVE_BOOT/configs/etc/X11/*
+cp -r LIVE_BOOT/configs/etc/X11/* /etc/X11/
+cp -r LIVE_BOOT/configs/etc/cron.d /etc/
+cp -r LIVE_BOOT/configs/etc/dnsmasq.conf /etc/
+cp -r LIVE_BOOT/configs/etc/hosts /etc/
+cp -r LIVE_BOOT/configs/etc/lighttpd /etc/
+cp -r LIVE_BOOT/configs/etc/network /etc/
+cp -r LIVE_BOOT/configs/etc/systemd /etc/
+cp -r LIVE_BOOT/configs/srv/* /srv/
+cp -r LIVE_BOOT/configs/var/* /var/
+cp -r LIVE_BOOT/configs/usr/* /usr/
+
 

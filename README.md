@@ -20,16 +20,18 @@ The system focus is on thermal capacity, but there is plenty of useful tools (fu
 ```
 to install all packages and tools necesary for live build, initialize build env. and run initial build.
 
-wait until you'll have prompt insie chroot environment
+wait until you'll have prompt insie chroot environment starts will (live)
 
 7. From inside chroot run:
 ```
-	apt install git vim-nox -y
+	apt install git -y
 	cd /root
 	git clone https://github.com/adambialy/LIVE_BOOT.git
 	git clone https://github.com/adambialy/RTS_ansible.git
 	cd LIVE_BOOT/
 	git checkout deb13
+	cd /root
+	cp LIVE_BOOT/configs/root/configure_chroot.sh /root
 ```
 
 This will clone repos inside chroot env.

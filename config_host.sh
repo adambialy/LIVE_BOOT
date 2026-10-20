@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# This is initial script which needs to be executed only on clean debian 11 install
+echo "This is initial script which needs to be executed only on clean debian 13 host install"
+echo "Do not run it inside chroot env. Pleace CTRL + C if this is accidentally run inside chroot"
+sleep 5
 
 apt-get install \
     debootstrap \

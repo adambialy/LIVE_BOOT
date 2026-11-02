@@ -47,3 +47,11 @@ This will clone repos inside chroot env.
 The iso image will be called live-image-amd64.hybrid.iso
 
 10. Write iso image to usb stick with dd, balena or similar tools.
+
+
+Links
+=====
+
+https://terkeyberger.wordpress.com/2022/03/07/live-build-how-to-build-an-installable-debian-10-buster-live-cd/
+
+https://live-team.pages.debian.net/live-manual/html/live-manual/toc.en.html
